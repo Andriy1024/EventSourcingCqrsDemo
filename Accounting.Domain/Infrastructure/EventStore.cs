@@ -1,11 +1,8 @@
-﻿using AccountingApi;
-using AccountingApi.Domain;
-using Microsoft.Azure.Documents.Client;
+﻿using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountingApi.Infrastructure

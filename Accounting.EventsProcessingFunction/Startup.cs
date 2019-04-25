@@ -1,8 +1,5 @@
 ﻿using Accounting.EventsProcessingFunction;
-using Accounting.Services;
 using AccountingApi.Infrastructure;
-using AccountingApi.Services;
-using MediatR;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Hosting;
