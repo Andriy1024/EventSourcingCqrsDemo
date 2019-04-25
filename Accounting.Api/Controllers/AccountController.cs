@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Accounting.Api.Dtos;
 using Accounting.Services.Commands;
 using AccountingApi.Domain;
 using AccountingApi.Services;
@@ -17,7 +18,6 @@ namespace AccountingApi.Controllers
 
         public IAccountQuerys AccountQuerys { get; }
 
-
         public AccountController(IAccountCommands commands, IAccountQuerys querys)
         {
             AccountCommands = commands ?? throw new ArgumentNullException(nameof(commands));
@@ -32,20 +32,23 @@ namespace AccountingApi.Controllers
         }
 
         [HttpPost("create")]
-        public async Task Create([FromBody] CreateAccountCommand command)
+        public async Task Create([FromBody] CreateAccountDto request)
         {
+            var command = new CreateAccountCommand(request.AccountNumber, request.Owner);
             await this.AccountCommands.CreateAccountAsync(command);
         }
 
         [HttpPost("deposit")]
-        public async Task Deposit([FromBody]MakeDepositCommand command)
+        public async Task Deposit([FromBody]MakeDepositDto request)
         {
+            var command = new MakeDepositCommand(request.AccountNumber, request.Amount);
             await this.AccountCommands.MakeDepositAsync(command);
         }
 
         [HttpPost("transfer")]
-        public async Task TransferMoney([FromBody]TransferMoneyCommand command)
+        public async Task TransferMoney([FromBody]TransferMoneyDto request)
         {
+            var command = new TransferMoneyCommand(request.SourceAccountNumber, request.DestinationAccountNumber, request.Amount);
             await this.AccountCommands.TransferMoneyAsync(command);
         }
 
